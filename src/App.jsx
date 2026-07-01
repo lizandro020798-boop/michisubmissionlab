@@ -93,11 +93,11 @@ function CircuitBg() {
 /* ══════════════════════════════════════════════════════════════════
    HOOKS
 ══════════════════════════════════════════════════════════════════ */
-function useInView(threshold=0.12) {
+function useInView(threshold=0.01) {
   const ref=useRef(null), [v,setV]=useState(false)
   useEffect(()=>{
     const el=ref.current; if(!el) return
-    const obs=new IntersectionObserver(([e])=>{if(e.isIntersecting){setV(true);obs.disconnect()}},{threshold})
+    const obs=new IntersectionObserver(([e])=>{if(e.isIntersecting){setV(true);obs.disconnect()}},{threshold, rootMargin:'0px 0px 200px 0px'})
     obs.observe(el); return ()=>obs.disconnect()
   },[threshold])
   return [ref,v]
