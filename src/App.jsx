@@ -707,7 +707,7 @@ export default function App() {
                       <li key={f}><I.Check aria-hidden="true"/>{f}</li>
                     ))}
                   </ul>
-                  <button className="prog-cta" onClick={()=>p.payLink?window.open(p.payLink,'_blank'):wa()}>{p.ctaText}</button>
+                  <button className="prog-cta" onClick={()=>p.payLink?(window.location.href=p.payLink):wa()}>{p.ctaText}</button>
                 </article>
               </FadeUp>
             ))}
