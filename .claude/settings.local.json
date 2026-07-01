@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh api *)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:github.com)",
+      "PowerShell(npx uipro-cli init --ai claude 2>&1)",
+      "PowerShell(ls \"$env:USERPROFILE\\\\.claude\\\\skills\")",
+      "Bash(find /mnt/c/Users/Lizandro/Desktop/combat-lab -type f | grep -v \".git\" | head -50)",
+      "PowerShell(Get-ChildItem -Recurse \"$env:USERPROFILE\\\\Desktop\\\\combat-lab\" | Where-Object { !$_.PSIsContainer } | Select-Object FullName)",
+      "Skill(run)",
+      "Skill(run:*)",
+      "PowerShell(Set-Location \"$env:USERPROFILE\\\\Desktop\\\\combat-lab\"; Start-Process powershell -ArgumentList \"-NoExit\", \"-Command\", \"npm run dev\" -WindowStyle Normal)",
+      "PowerShell(\\(Get-Content \"$env:USERPROFILE\\\\Desktop\\\\combat-lab\\\\src\\\\App.css\"\\).Count)",
+      "PowerShell(ffmpeg -version 2>&1)",
+      "PowerShell(Copy-Item \"C:\\\\Users\\\\Lizandro\\\\Downloads\\\\WhatsApp Image 2026-06-30 at 3.50.23 PM.jpeg\" \"C:\\\\Users\\\\Lizandro\\\\Desktop\\\\combat-lab\\\\public\\\\img\\\\testimonio-1.jpg\")",
+      "PowerShell(Copy-Item \"C:\\\\Users\\\\Lizandro\\\\Downloads\\\\WhatsApp Image 2026-07-01 at 10.18.14 AM.jpeg\" \"C:\\\\Users\\\\Lizandro\\\\Desktop\\\\combat-lab\\\\public\\\\img\\\\testimonio-2.jpg\")",
+      "PowerShell(Rename-Item \"C:\\\\Users\\\\Lizandro\\\\Desktop\\\\combat-lab\\\\public\\\\img\\\\testimonio-1.jpg\" \"testimonio-maxi.jpg\")",
+      "PowerShell(Rename-Item \"C:\\\\Users\\\\Lizandro\\\\Desktop\\\\combat-lab\\\\public\\\\img\\\\testimonio-2.jpg\" \"testimonio-laura.jpg\")",
+      "PowerShell(Copy-Item \"C:\\\\Users\\\\Lizandro\\\\Desktop\\\\combat-lab\\\\TESTIMONIOS\\\\VICHO.jfif\" \"C:\\\\Users\\\\Lizandro\\\\Desktop\\\\combat-lab\\\\public\\\\img\\\\testimonio-vicente.jpg\")",
+      "PowerShell(Copy-Item \"C:\\\\Users\\\\Lizandro\\\\Downloads\\\\WhatsApp Image 2026-07-01 at 11.12.52 AM.jpeg\" \"C:\\\\Users\\\\Lizandro\\\\Desktop\\\\combat-lab\\\\public\\\\img\\\\testimonio-sebastian.jpg\")",
+      "PowerShell(Copy-Item \"C:\\\\Users\\\\Lizandro\\\\Downloads\\\\WhatsApp Image 2026-07-01 at 11.13.41 AM.jpeg\" \"C:\\\\Users\\\\Lizandro\\\\Desktop\\\\combat-lab\\\\public\\\\img\\\\testimonio-cesar.jpg\")",
+      "PowerShell(Copy-Item \"C:\\\\Users\\\\Lizandro\\\\Downloads\\\\WhatsApp Image 2026-07-01 at 11.41.18 AM.jpeg\" \"C:\\\\Users\\\\Lizandro\\\\Desktop\\\\combat-lab\\\\public\\\\img\\\\testimonio-daniela.jpg\")"
+    ]
+  }
+}
