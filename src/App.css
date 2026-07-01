@@ -1946,7 +1946,6 @@ hr.divider { border: none; border-top: 1px solid var(--border); }
 }
 @media (max-width: 900px) {
   .coach-grid { grid-template-columns: 1fr; gap: 40px; }
-  .coach-photo-frame { max-height: 340px; aspect-ratio: 4/3; }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; }
   .hero { padding-top: 80px; }
   .hero-left { padding: 60px 24px 40px; max-width: 100%; }
