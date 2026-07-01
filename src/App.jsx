@@ -136,10 +136,9 @@ const NAV_LINKS = ['Método','Ejercicios','Resultados','Planes','Contacto']
 const NAV_IDS   = ['metodo','ejercicios','resultados','programas','contacto']
 
 const METHODS = [
-  {icon:<I.Dna/>,    num:'01', step:'Fase 01', title:'Diagnóstico Total',       desc:'Composición corporal, movilidad, historial, objetivos. Cero suposiciones — solo datos reales sobre tu punto de partida.'},
-  {icon:<I.Target/>, num:'02', step:'Fase 02', title:'Protocolo Personalizado', desc:'Programación diseñada para ti. Fuerza, potencia, resistencia y trabajo específico para el combate — todo integrado.'},
-  {icon:<I.Zap/>,    num:'03', step:'Fase 03', title:'Ejecución Guiada',         desc:'Seguimiento por WhatsApp, videos de referencia, retroalimentación constante. No entrenas solo — el sistema te sostiene.'},
-  {icon:<I.Shield/>, num:'04', step:'Fase 04', title:'Evolución Continua',       desc:'Ajuste mensual de planificación con datos reales. El progreso no es accidental — es ingeniería aplicada al combate.'},
+  {icon:<I.Target/>, num:'01', step:'Fase 01', title:'Protocolo Personalizado', desc:'Programación diseñada para ti. Fuerza, potencia, resistencia y trabajo específico para el combate — todo integrado.'},
+  {icon:<I.Zap/>,    num:'02', step:'Fase 02', title:'Ejecución Guiada',         desc:'Seguimiento por WhatsApp, videos de referencia, retroalimentación constante. No entrenas solo — el sistema te sostiene.'},
+  {icon:<I.Shield/>, num:'03', step:'Fase 03', title:'Evolución Continua',       desc:'Ajuste mensual de planificación con datos reales. El progreso no es accidental — es ingeniería aplicada al combate.'},
 ]
 
 const PLANS_ONLINE = [
