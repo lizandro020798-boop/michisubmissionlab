@@ -202,7 +202,7 @@ const PLANS_JIU_JITSU = [
 
 const PROCESS_STEPS = [
   { num:'01', title:'Conversación Inicial', desc:'Me escribes por WhatsApp. En menos de 24 horas coordinamos una llamada breve para entender tus objetivos, tu historial y si el programa es lo que necesitas.', tag:'~15 min' },
-  { num:'02', title:'Diagnóstico',          desc:'Completas un formulario detallado: composición corporal, movilidad, historial de lesiones, horarios y acceso a equipamiento. Sin datos, no hay planificación real.', tag:'1-2 días' },
+  { num:'02', title:'Diagnóstico',          desc:'Completas un formulario detallado: movilidad, historial de lesiones, horarios y acceso a equipamiento. Sin datos, no hay planificación real.', tag:'1-2 días' },
   { num:'03', title:'Empiezas Tu Plan',     desc:'Recibes tu rutina paso a paso en el celular a través de la app Harbiz, lista para entrenar. Primer check-in al final de la primera semana. A partir de ahí ajustamos cada mes con datos reales.', tag:'Día 1' },
 ]
 
