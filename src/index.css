@@ -21,8 +21,6 @@
   --font-body: 'Barlow', sans-serif;
 }
 
-html { scroll-behavior: smooth; }
-
 body {
   background: var(--bg-deep);
   color: var(--foreground);

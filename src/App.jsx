@@ -93,11 +93,11 @@ function CircuitBg() {
 /* ══════════════════════════════════════════════════════════════════
    HOOKS
 ══════════════════════════════════════════════════════════════════ */
-function useInView(threshold=0.12) {
+function useInView(threshold=0.01) {
   const ref=useRef(null), [v,setV]=useState(false)
   useEffect(()=>{
     const el=ref.current; if(!el) return
-    const obs=new IntersectionObserver(([e])=>{if(e.isIntersecting){setV(true);obs.disconnect()}},{threshold})
+    const obs=new IntersectionObserver(([e])=>{if(e.isIntersecting){setV(true);obs.disconnect()}},{threshold, rootMargin:'0px 0px 600px 0px'})
     obs.observe(el); return ()=>obs.disconnect()
   },[threshold])
   return [ref,v]
@@ -132,14 +132,13 @@ function Counter({to,suffix=''}) {
 /* ══════════════════════════════════════════════════════════════════
    DATA
 ══════════════════════════════════════════════════════════════════ */
-const NAV_LINKS = ['Método','Ejercicios','Planes','Resultados','Contacto']
-const NAV_IDS   = ['metodo','ejercicios','programas','resultados','contacto']
+const NAV_LINKS = ['Método','Ejercicios','Resultados','Planes','Contacto']
+const NAV_IDS   = ['metodo','ejercicios','resultados','programas','contacto']
 
 const METHODS = [
-  {icon:<I.Dna/>,    num:'01', step:'Fase 01', title:'Diagnóstico Total',       desc:'Composición corporal, movilidad, historial, objetivos. Cero suposiciones — solo datos reales sobre tu punto de partida.'},
-  {icon:<I.Target/>, num:'02', step:'Fase 02', title:'Protocolo Personalizado', desc:'Programación diseñada para ti. Fuerza, potencia, resistencia y trabajo específico para el combate — todo integrado.'},
-  {icon:<I.Zap/>,    num:'03', step:'Fase 03', title:'Ejecución Guiada',         desc:'Seguimiento por WhatsApp, videos de referencia, retroalimentación constante. No entrenas solo — el sistema te sostiene.'},
-  {icon:<I.Shield/>, num:'04', step:'Fase 04', title:'Evolución Continua',       desc:'Ajuste mensual de planificación con datos reales. El progreso no es accidental — es ingeniería aplicada al combate.'},
+  {icon:<I.Target/>, num:'01', step:'Fase 01', title:'Protocolo Personalizado', desc:'Programación diseñada para ti. Fuerza, potencia, resistencia y trabajo específico para el combate — todo integrado.'},
+  {icon:<I.Zap/>,    num:'02', step:'Fase 02', title:'Ejecución Guiada',         desc:'Seguimiento por WhatsApp, videos de referencia, retroalimentación constante. No entrenas solo — el sistema te sostiene.'},
+  {icon:<I.Shield/>, num:'03', step:'Fase 03', title:'Evolución Continua',       desc:'Ajuste mensual de planificación con datos reales. El progreso no es accidental — es ingeniería aplicada al combate.'},
 ]
 
 const PLANS_ONLINE = [
@@ -151,7 +150,7 @@ const PLANS_ONLINE = [
     quarterly:'Trimestral: $189.000 · ahorra $21.000',
     feats:[
       'Planificación mensual personalizada',
-      'Acceso a Harbiz',
+      'Tu rutina paso a paso en el celular (app Harbiz)',
       'Biblioteca de ejercicios',
       'Seguimiento y ajustes continuos',
       'Revisión semanal',
@@ -160,7 +159,8 @@ const PLANS_ONLINE = [
       '17% de descuento en clases de Jiu Jitsu',
     ],
     featured:false,
-    ctaText:'Aplicar a Plan Base',
+    ctaText:'Pagar Plan Base',
+    payLink:'https://mpago.la/1tXKAuD',
   },
   {
     badge:{text:'Recomendado', cls:'b'},
@@ -177,7 +177,8 @@ const PLANS_ONLINE = [
       '17% de descuento en clases de Jiu Jitsu',
     ],
     featured:true,
-    ctaText:'Aplicar a Plan Integral',
+    ctaText:'Pagar Plan Integral',
+    payLink:'https://mpago.la/19YPwML',
   },
 ]
 
@@ -201,8 +202,8 @@ const PLANS_JIU_JITSU = [
 
 const PROCESS_STEPS = [
   { num:'01', title:'Conversación Inicial', desc:'Me escribes por WhatsApp. En menos de 24 horas coordinamos una llamada breve para entender tus objetivos, tu historial y si el programa es lo que necesitas.', tag:'~15 min' },
-  { num:'02', title:'Diagnóstico',          desc:'Completas un formulario detallado: composición corporal, movilidad, historial de lesiones, horarios y acceso a equipamiento. Sin datos, no hay planificación real.', tag:'1-2 días' },
-  { num:'03', title:'Empiezas Tu Plan',     desc:'Recibes acceso a Harbiz con tu planificación lista. Primer check-in al final de la primera semana. A partir de ahí ajustamos cada mes con datos reales.', tag:'Día 1' },
+  { num:'02', title:'Diagnóstico',          desc:'Completas un formulario detallado: movilidad, historial de lesiones, horarios y acceso a equipamiento. Sin datos, no hay planificación real.', tag:'1-2 días' },
+  { num:'03', title:'Empiezas Tu Plan',     desc:'Recibes tu rutina paso a paso en el celular a través de la app Harbiz, lista para entrenar. Primer check-in al final de la primera semana. A partir de ahí ajustamos cada mes con datos reales.', tag:'Día 1' },
 ]
 
 const FAQ_ITEMS = [
@@ -210,7 +211,8 @@ const FAQ_ITEMS = [
   { q:'¿Funciona si soy principiante o nunca he entrenado?',     a:'Sí. El diagnóstico inicial determina exactamente tu punto de partida. El programa se construye desde ahí, no desde un estándar imaginario.' },
   { q:'¿Qué pasa si me lesiono o tengo semanas difíciles?',      a:'El plan se ajusta. Lesión, viaje, semana de exámenes — todo eso forma parte del proceso real. La planificación se modifica con datos, no con plantillas fijas.' },
   { q:'¿El programa es solo para competidores de BJJ?',          a:'No. Trabajo con competidores amateurs, practicantes recreativos y personas que quieren mejorar su condición física general. El nivel de exigencia se calibra a tu objetivo.' },
-{ q:'¿Puedo ver la plataforma Harbiz antes de pagar?',         a:'Sí. En la conversación inicial puedo mostrarte cómo funciona la plataforma para que sepas exactamente lo que vas a recibir antes de comprometerte.' },
+{ q:'¿Qué es Harbiz y cómo veo mi rutina?',                    a:'Harbiz es la app donde recibes tu rutina paso a paso en el celular: ejercicios, series, videos de referencia y tu planificación completa. En la conversación inicial te muestro cómo funciona para que sepas exactamente qué vas a recibir antes de pagar.' },
+  { q:'¿Qué pasa si no veo resultados?',                         a:'Tienes garantía de 30 días: si entrenando conmigo no sientes mejoras reales en el tatami, te devuelvo tu dinero.' },
 ]
 
 const BELT = {
@@ -354,7 +356,7 @@ export default function App() {
           ))}
         </ul>
         <div className="nav-right">
-<button className="nav-cta" onClick={wa} aria-label="Aplicar ahora">Aplicar Ahora</button>
+<button className="nav-cta" onClick={wa} aria-label="Inscríbete aquí">Inscríbete Aquí</button>
           <button className="nav-menu-btn" aria-label="Menú" onClick={() => setMenuOpen(o => !o)}>
             {menuOpen ? <I.Close/> : <I.Menu/>}
           </button>
@@ -392,17 +394,17 @@ export default function App() {
           </div>
 
           <h1 className="hero-title">
-            <span className="hero-title-line anim-1">ENTRENA EL CUERPO.</span>
-            <span className="hero-title-accent anim-2" data-text="FORJA EL CARÁCTER.">FORJA EL CARÁCTER.</span>
+            <span className="hero-title-line anim-1">FUERZA REAL PARA EL TATAMI.</span>
+            <span className="hero-title-accent anim-2" data-text="SIN QUEDARTE SIN AIRE.">SIN QUEDARTE SIN AIRE.</span>
             <span className="hero-title-solid anim-2" style={{fontSize:'clamp(1.1rem,2.2vw,1.8rem)',fontWeight:600,letterSpacing:'0.06em',color:'var(--fg-muted)',marginTop:6}}>
               WORK UNDER DISCOMFORT
             </span>
           </h1>
 
           <p className="hero-desc anim-3">
-            Sistema de preparación física para grappling y deportes de combate.
-            Fuerza útil, movilidad real, acondicionamiento específico —
-            y la disciplina para construir un atleta completo.
+            Sistema de preparación física para grappling: para que no te quedes sin cardio
+            a mitad de la lucha, no te lesiones por falta de base física y llegues con la
+            fuerza y la movilidad que el tatami exige.
           </p>
 
           <div className="hero-actions anim-4">
@@ -435,36 +437,40 @@ export default function App() {
         </div>
       </header>
 
-      {/* ── TESTIMONIOS (hero strip) ─────────────────────────── */}
-      <section className="section hero-test-section" id="resultados" aria-labelledby="test-h2">
+      <hr className="divider"/>
+
+      {/* ── MÉTODO ──────────────────────────────────────────── */}
+      <section className="section metodo-section" id="metodo" aria-labelledby="metodo-h">
+        <div className="metodo-video-col" aria-hidden="true">
+          <video
+            src="/videos/lizandro-combat.mp4#t=4"
+            autoPlay muted loop playsInline
+            className="metodo-video"
+          />
+          <div className="metodo-video-overlay"/>
+          <div className="metodo-video-glow"/>
+        </div>
         <div className="section-inner">
           <FadeUp>
-            <div className="section-label">Resultados Reales</div>
-            <h2 className="section-title" id="test-h2">
-              Lo Que Dicen<br/><span>Los Atletas</span>
+            <div className="section-label">El Sistema</div>
+            <h2 className="section-title" id="metodo-h">
+              Ingeniería del<br/><span>Combate</span>
             </h2>
             <p className="section-desc">
-              Atletas reales, procesos reales. Cada testimonio es una historia de trabajo bajo incomodidad.
+              Fuerza, movilidad y cardio diseñados para el combate — para que no te quedes
+              sin aire ni te lesiones a mitad de una lucha. No vendemos motivación,
+              vendemos sistemas.
             </p>
           </FadeUp>
-          <div className="test-grid" role="list">
-            {TESTIMONIALS.map((t,i)=>(
-              <FadeUp key={t.name} delay={i*0.08}>
-                <article className="test-card" role="listitem">
-                  <div className="test-stars" aria-label="5 de 5 estrellas">
-                    {Array.from({length:5}).map((_,j)=><I.Star key={j}/>)}
-                  </div>
-                  <blockquote className="test-text">{t.text}</blockquote>
-                  <div className="test-author">
-                    {t.photo
-                      ? <img src={t.photo} alt={t.name} className="test-avatar-photo"/>
-                      : <div className="test-avatar" aria-hidden="true">{t.initials}</div>
-                    }
-                    <div>
-                      <div className="test-name">{t.name}</div>
-                      <div className="test-role">{t.role}</div>
-                    </div>
-                  </div>
+          <div className="method-grid" role="list">
+            {METHODS.map((m,i)=>(
+              <FadeUp key={m.num} delay={i*0.08}>
+                <article className="method-card" role="listitem">
+                  <div className="method-num" aria-hidden="true">{m.num}</div>
+                  <div className="method-icon" aria-hidden="true">{m.icon}</div>
+                  <div className="method-step">{m.step}</div>
+                  <h3 className="method-title">{m.title}</h3>
+                  <p className="method-desc">{m.desc}</p>
                 </article>
               </FadeUp>
             ))}
@@ -563,46 +569,6 @@ export default function App() {
 
       <hr className="divider"/>
 
-      {/* ── MÉTODO ──────────────────────────────────────────── */}
-      <section className="section metodo-section" id="metodo" aria-labelledby="metodo-h">
-        <div className="metodo-video-col" aria-hidden="true">
-          <video
-            src="/videos/lizandro-combat.mp4#t=4"
-            autoPlay muted loop playsInline
-            className="metodo-video"
-          />
-          <div className="metodo-video-overlay"/>
-          <div className="metodo-video-glow"/>
-        </div>
-        <div className="section-inner">
-          <FadeUp>
-            <div className="section-label">El Sistema</div>
-            <h2 className="section-title" id="metodo-h">
-              Ingeniería del<br/><span>Combate</span>
-            </h2>
-            <p className="section-desc">
-              La preparación física como herramienta para la recalibración de la voluntad humana.
-              No vendemos motivación — vendemos sistemas.
-            </p>
-          </FadeUp>
-          <div className="method-grid" role="list">
-            {METHODS.map((m,i)=>(
-              <FadeUp key={m.num} delay={i*0.08}>
-                <article className="method-card" role="listitem">
-                  <div className="method-num" aria-hidden="true">{m.num}</div>
-                  <div className="method-icon" aria-hidden="true">{m.icon}</div>
-                  <div className="method-step">{m.step}</div>
-                  <h3 className="method-title">{m.title}</h3>
-                  <p className="method-desc">{m.desc}</p>
-                </article>
-              </FadeUp>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <hr className="divider"/>
-
       {/* ── EJERCICIOS ──────────────────────────────────────── */}
       <section className="section" id="ejercicios" aria-labelledby="ej-h">
         <div className="section-inner">
@@ -645,6 +611,45 @@ export default function App() {
 
       <hr className="divider"/>
 
+      {/* ── TESTIMONIOS (hero strip) ─────────────────────────── */}
+      <section className="section hero-test-section" id="resultados" aria-labelledby="test-h2">
+        <div className="section-inner">
+          <FadeUp>
+            <div className="section-label">Resultados Reales</div>
+            <h2 className="section-title" id="test-h2">
+              Lo Que Dicen<br/><span>Los Atletas</span>
+            </h2>
+            <p className="section-desc">
+              Atletas reales, procesos reales. Cada testimonio es una historia de trabajo bajo incomodidad.
+            </p>
+          </FadeUp>
+          <div className="test-grid" role="list">
+            {TESTIMONIALS.map((t,i)=>(
+              <FadeUp key={t.name} delay={i*0.08}>
+                <article className="test-card" role="listitem">
+                  <div className="test-stars" aria-label="5 de 5 estrellas">
+                    {Array.from({length:5}).map((_,j)=><I.Star key={j}/>)}
+                  </div>
+                  <blockquote className="test-text">{t.text}</blockquote>
+                  <div className="test-author">
+                    {t.photo
+                      ? <img src={t.photo} alt={t.name} className="test-avatar-photo"/>
+                      : <div className="test-avatar" aria-hidden="true">{t.initials}</div>
+                    }
+                    <div>
+                      <div className="test-name">{t.name}</div>
+                      <div className="test-role">{t.role}</div>
+                    </div>
+                  </div>
+                </article>
+              </FadeUp>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <hr className="divider"/>
+
       {/* ── PLANES ──────────────────────────────────────────── */}
       <section className="section programs-bg" id="programas" aria-labelledby="prog-h">
         <div className="section-inner">
@@ -662,19 +667,28 @@ export default function App() {
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/><path d="M9 7h6M9 11h4"/></svg>
               </div>
               <div className="plans-app-banner-content">
-                <div className="plans-app-banner-title">Acceso a la App incluido en todos los planes</div>
-                <div className="plans-app-banner-desc">Biblioteca de Jiu Jitsu integrada — técnicas, posiciones y material actualizado semanalmente.</div>
+                <div className="plans-app-banner-title">Acceso a la app Harbiz incluido en todos los planes</div>
+                <div className="plans-app-banner-desc">Tu rutina paso a paso en el celular, más biblioteca de Jiu Jitsu integrada — técnicas, posiciones y material actualizado semanalmente.</div>
               </div>
               <div className="plans-app-banner-badge">INCLUIDO</div>
             </div>
           </FadeUp>
 
-          <FadeUp delay={0.0}>
+          <FadeUp delay={0.15}>
+            <div className="plans-app-banner">
+              <div className="plans-app-banner-icon" aria-hidden="true">
+                <I.Shield/>
+              </div>
+              <div className="plans-app-banner-content">
+                <div className="plans-app-banner-title">Garantía de 30 días</div>
+                <div className="plans-app-banner-desc">Si entrenando conmigo no sientes mejoras reales en el tatami, te devuelvo tu dinero.</div>
+              </div>
+            </div>
           </FadeUp>
 
           {/* ── Online ── */}
           <FadeUp delay={0.1}>
-            <div className="plans-category-label">Online</div>
+            <div className="plans-category-label">Online · en cualquier parte de Chile o el mundo</div>
           </FadeUp>
           <div className="programs-grid" role="list">
             {PLANS_ONLINE.map((p,i)=>(
@@ -692,7 +706,7 @@ export default function App() {
                       <li key={f}><I.Check aria-hidden="true"/>{f}</li>
                     ))}
                   </ul>
-                  <button className="prog-cta" onClick={wa}>{p.ctaText}</button>
+                  <button className="prog-cta" onClick={()=>p.payLink?(window.location.href=p.payLink):wa()}>{p.ctaText}</button>
                 </article>
               </FadeUp>
             ))}
@@ -700,7 +714,7 @@ export default function App() {
 
           {/* ── Jiu Jitsu Personalizado ── */}
           <FadeUp delay={0.1}>
-            <div className="plans-category-label" style={{marginTop:48}}>Clases Privadas de Jiu Jitsu</div>
+            <div className="plans-category-label" style={{marginTop:48}}>Clases presenciales de Jiu Jitsu · en persona, Chile</div>
           </FadeUp>
           <div className="programs-grid programs-grid--jj" role="list">
             {PLANS_JIU_JITSU.map((p,i)=>(
@@ -721,7 +735,6 @@ export default function App() {
       </section>
 
       <hr className="divider"/>
-
 
       {/* ── PROCESO ─────────────────────────────────────────── */}
       <section className="section" id="proceso" aria-labelledby="proceso-h">
