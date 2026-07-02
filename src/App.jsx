@@ -138,7 +138,7 @@ const NAV_IDS   = ['metodo','ejercicios','resultados','programas','contacto']
 const METHODS = [
   {icon:<I.Target/>, num:'01', step:'Fase 01', title:'Protocolo Personalizado', desc:'Programación diseñada para ti. Fuerza, potencia, resistencia y trabajo específico para el combate — todo integrado.'},
   {icon:<I.Zap/>,    num:'02', step:'Fase 02', title:'Ejecución Guiada',         desc:'Seguimiento por WhatsApp, videos de referencia, retroalimentación constante. No entrenas solo — el sistema te sostiene.'},
-  {icon:<I.Shield/>, num:'03', step:'Fase 03', title:'Evolución Continua',       desc:'Ajuste mensual de planificación con datos reales. El progreso no es accidental — es ingeniería aplicada al combate.'},
+  {icon:<I.Shield/>, num:'03', step:'Fase 03', title:'Evolución Continua',       desc:'Cada mes reviso cómo te fue y ajusto tu plan según eso. Nada de plantillas fijas, tu progreso manda.'},
 ]
 
 const PLANS_ONLINE = [
