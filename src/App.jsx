@@ -458,8 +458,7 @@ export default function App() {
             </h2>
             <p className="section-desc">
               Fuerza, movilidad y cardio diseñados para el combate — para que no te quedes
-              sin aire ni te lesiones a mitad de una lucha. No vendemos motivación,
-              vendemos sistemas.
+              sin aire ni te lesiones a mitad de una lucha.
             </p>
           </FadeUp>
           <div className="method-grid" role="list">
