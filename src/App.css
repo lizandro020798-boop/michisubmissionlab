@@ -1756,22 +1756,20 @@ body::after {
 }
 
 /* ─── TESTIMONIALS ───────────────────────────────────────────────── */
-.test-marquee {
+.test-carousel-wrap {
+  position: relative;
   margin-top: 56px;
-  overflow: hidden;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
 }
+.test-carousel {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.test-carousel::-webkit-scrollbar { display: none; }
 .test-track {
   display: flex;
   gap: 20px;
-  width: max-content;
-  animation: test-scroll 55s linear infinite;
-}
-.test-marquee:hover .test-track { animation-play-state: paused; }
-@keyframes test-scroll {
-  from { transform: translateX(-50%); }
-  to   { transform: translateX(0%); }
 }
 .test-card {
   background: var(--glass);
@@ -1783,8 +1781,35 @@ body::after {
   transition: border-color 0.3s, transform 0.3s var(--ease), box-shadow 0.3s;
   width: 380px;
   flex-shrink: 0;
+  scroll-snap-align: start;
 }
 .test-card:hover { border-color: var(--border-g); transform: translateY(-3px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+.test-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--glass);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border-g);
+  color: var(--fg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+.test-nav-btn svg { width: 20px; height: 20px; }
+.test-nav-btn:hover { background: rgba(0,229,160,0.12); border-color: var(--accent); }
+.test-nav-btn.prev { left: -8px; }
+.test-nav-btn.prev svg { transform: rotate(180deg); }
+.test-nav-btn.next { right: -8px; }
+@media (max-width: 900px) {
+  .test-nav-btn { display: none; }
+}
 @media (max-width: 480px) {
   .test-card { width: 300px; padding: 36px 28px; }
 }
