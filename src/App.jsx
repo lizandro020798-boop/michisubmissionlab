@@ -338,6 +338,14 @@ function ExerciseCard({src, thumb, label, tag}) {
 ══════════════════════════════════════════════════════════════════ */
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const testRef = useRef(null)
+  const scrollTest = dir => {
+    const el = testRef.current
+    if (!el) return
+    const card = el.querySelector('.test-card')
+    const step = card ? card.offsetWidth + 20 : 400
+    el.scrollBy({ left: dir * step, behavior: 'smooth' })
+  }
   const goto = id => { document.getElementById(id)?.scrollIntoView({behavior:'smooth'}); setMenuOpen(false) }
   const wa   = () => window.open('https://wa.me/56973744226?text=Hola%2C%20quiero%20aplicar%20a%20MichiLab','_blank')
   const ig   = () => window.open('https://www.instagram.com/ruiz.lizandroivan/','_blank')
@@ -624,27 +632,31 @@ export default function App() {
             </p>
           </FadeUp>
           <FadeUp>
-            <div className="test-marquee" role="list">
-              <div className="test-track">
-                {[...TESTIMONIALS, ...TESTIMONIALS].map((t,i)=>(
-                  <article className="test-card" role="listitem" key={`${t.name}-${i}`} aria-hidden={i>=TESTIMONIALS.length}>
-                    <div className="test-stars" aria-label="5 de 5 estrellas">
-                      {Array.from({length:5}).map((_,j)=><I.Star key={j}/>)}
-                    </div>
-                    <blockquote className="test-text">{t.text}</blockquote>
-                    <div className="test-author">
-                      {t.photo
-                        ? <img src={t.photo} alt={t.name} className="test-avatar-photo"/>
-                        : <div className="test-avatar" aria-hidden="true">{t.initials}</div>
-                      }
-                      <div>
-                        <div className="test-name">{t.name}</div>
-                        <div className="test-role">{t.role}</div>
+            <div className="test-carousel-wrap">
+              <button className="test-nav-btn prev" onClick={()=>scrollTest(-1)} aria-label="Testimonio anterior"><I.Arrow/></button>
+              <div className="test-carousel" ref={testRef} role="list">
+                <div className="test-track">
+                  {TESTIMONIALS.map((t)=>(
+                    <article className="test-card" role="listitem" key={t.name}>
+                      <div className="test-stars" aria-label="5 de 5 estrellas">
+                        {Array.from({length:5}).map((_,j)=><I.Star key={j}/>)}
                       </div>
-                    </div>
-                  </article>
-                ))}
+                      <blockquote className="test-text">{t.text}</blockquote>
+                      <div className="test-author">
+                        {t.photo
+                          ? <img src={t.photo} alt={t.name} className="test-avatar-photo"/>
+                          : <div className="test-avatar" aria-hidden="true">{t.initials}</div>
+                        }
+                        <div>
+                          <div className="test-name">{t.name}</div>
+                          <div className="test-role">{t.role}</div>
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                </div>
               </div>
+              <button className="test-nav-btn next" onClick={()=>scrollTest(1)} aria-label="Siguiente testimonio"><I.Arrow/></button>
             </div>
           </FadeUp>
         </div>
