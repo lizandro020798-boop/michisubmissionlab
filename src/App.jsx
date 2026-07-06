@@ -623,28 +623,30 @@ export default function App() {
               Atletas reales, procesos reales. Cada testimonio es una historia de trabajo bajo incomodidad.
             </p>
           </FadeUp>
-          <div className="test-grid" role="list">
-            {TESTIMONIALS.map((t,i)=>(
-              <FadeUp key={t.name} delay={i*0.08}>
-                <article className="test-card" role="listitem">
-                  <div className="test-stars" aria-label="5 de 5 estrellas">
-                    {Array.from({length:5}).map((_,j)=><I.Star key={j}/>)}
-                  </div>
-                  <blockquote className="test-text">{t.text}</blockquote>
-                  <div className="test-author">
-                    {t.photo
-                      ? <img src={t.photo} alt={t.name} className="test-avatar-photo"/>
-                      : <div className="test-avatar" aria-hidden="true">{t.initials}</div>
-                    }
-                    <div>
-                      <div className="test-name">{t.name}</div>
-                      <div className="test-role">{t.role}</div>
+          <FadeUp>
+            <div className="test-marquee" role="list">
+              <div className="test-track">
+                {[...TESTIMONIALS, ...TESTIMONIALS].map((t,i)=>(
+                  <article className="test-card" role="listitem" key={`${t.name}-${i}`} aria-hidden={i>=TESTIMONIALS.length}>
+                    <div className="test-stars" aria-label="5 de 5 estrellas">
+                      {Array.from({length:5}).map((_,j)=><I.Star key={j}/>)}
                     </div>
-                  </div>
-                </article>
-              </FadeUp>
-            ))}
-          </div>
+                    <blockquote className="test-text">{t.text}</blockquote>
+                    <div className="test-author">
+                      {t.photo
+                        ? <img src={t.photo} alt={t.name} className="test-avatar-photo"/>
+                        : <div className="test-avatar" aria-hidden="true">{t.initials}</div>
+                      }
+                      <div>
+                        <div className="test-name">{t.name}</div>
+                        <div className="test-role">{t.role}</div>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </FadeUp>
         </div>
       </section>
 

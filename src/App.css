@@ -1756,11 +1756,22 @@ body::after {
 }
 
 /* ─── TESTIMONIALS ───────────────────────────────────────────────── */
-.test-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+.test-marquee {
   margin-top: 56px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+}
+.test-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: test-scroll 55s linear infinite;
+}
+.test-marquee:hover .test-track { animation-play-state: paused; }
+@keyframes test-scroll {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0%); }
 }
 .test-card {
   background: var(--glass);
@@ -1770,8 +1781,13 @@ body::after {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   transition: border-color 0.3s, transform 0.3s var(--ease), box-shadow 0.3s;
+  width: 380px;
+  flex-shrink: 0;
 }
 .test-card:hover { border-color: var(--border-g); transform: translateY(-3px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+@media (max-width: 480px) {
+  .test-card { width: 300px; padding: 36px 28px; }
+}
 .test-stars { display: flex; gap: 4px; color: var(--accent); margin-bottom: 20px; }
 .test-stars svg { width: 18px; height: 18px; }
 .test-text {
@@ -1968,7 +1984,7 @@ hr.divider { border: none; border-top: 1px solid var(--border); }
   .hero-actions { flex-direction: column; }
   .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
   .method-grid { grid-template-columns: 1fr; }
-  .programs-grid, .test-grid { grid-template-columns: 1fr; }
+  .programs-grid { grid-template-columns: 1fr; }
 }
 /* ─── COACH EXTRAS ───────────────────────────────────────────────── */
 .coach-credentials {
