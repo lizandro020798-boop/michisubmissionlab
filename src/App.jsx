@@ -119,16 +119,6 @@ function FadeUp({children,delay=0,style={},className=''}) {
     </div>
   )
 }
-function Counter({to,suffix=''}) {
-  const [n,setN]=useState(0), [ref,v]=useInView(0.4)
-  useEffect(()=>{
-    if(!v) return; let s=null; const dur=1800
-    const tick=ts=>{if(!s)s=ts; const p=Math.min((ts-s)/dur,1),e=1-Math.pow(1-p,3); setN(Math.floor(e*to)); if(p<1)requestAnimationFrame(tick); else setN(to)}
-    requestAnimationFrame(tick)
-  },[v,to])
-  return <span ref={ref}>{n}{suffix}</span>
-}
-
 /* ══════════════════════════════════════════════════════════════════
    DATA
 ══════════════════════════════════════════════════════════════════ */
@@ -214,12 +204,6 @@ const FAQ_ITEMS = [
 { q:'¿Qué es Harbiz y cómo veo mi rutina?',                    a:'Harbiz es la app donde recibes tu rutina paso a paso en el celular: ejercicios, series, videos de referencia y tu planificación completa. En la conversación inicial te muestro cómo funciona para que sepas exactamente qué vas a recibir antes de pagar.' },
   { q:'¿Qué pasa si no veo resultados?',                         a:'Tienes garantía de 30 días: si entrenando conmigo no sientes mejoras reales en el tatami, te devuelvo tu dinero.' },
 ]
-
-const BELT = {
-  negro:  { label:'Cinturón Negro', color:'#111', border:'#555',   text:'#ccc'   },
-  azul:   { label:'Cinturón Azul',  color:'#1a4fa0', border:'#3a7bd5', text:'#fff' },
-  blanco: { label:'Faixa Blanca',   color:'#c8cdd8', border:'#8a91a0', text:'#111' },
-}
 
 const TESTIMONIALS = [
   {text:'"Hoy avanzo a mi propio ritmo, acompañada por un gran profesional. La dedicación, seguimiento y capacidad para entender mis objetivos marcan la diferencia. Contar con alguien que realmente te guía, te desafía y se preocupa cambia completamente el proceso."', name:'Daniela Portus', role:'Cinturón Negro BJJ · 38 años', initials:'DP', photo:'/img/testimonio-daniela.jpg'},
@@ -526,7 +510,7 @@ export default function App() {
                   Construido<br/><span>Desde el Tatami</span>
                 </h2>
                 <blockquote className="coach-quote">
-                  "La preparación física no es solo el desarrollo de cualidades físicas — es una herramienta para la recalibración de la voluntad humana."
+                  "No busco que sientas motivación por un rato. Busco que no te quedes sin aire a mitad de una lucha y que no vuelvas a lesionarte por no tener una base física real."
                 </blockquote>
                 <p className="coach-bio">
                   Ocho años en el tatami me enseñaron una cosa: la mayoría de las personas no necesita
@@ -673,6 +657,7 @@ export default function App() {
             <h2 className="section-title" id="prog-h">
               Elige Tu<br/><span>Protocolo</span>
             </h2>
+            <p className="section-desc">Precios en pesos chilenos (CLP).</p>
           </FadeUp>
 
           {/* Nota global destacada */}
@@ -813,7 +798,7 @@ export default function App() {
                 Cupos Limitados
               </div>
               <h2 className="cta-title" id="cta-h">
-                ¿Listo Para<br/><span>Recalibrar?</span>
+                ¿Listo Para<br/><span>Empezar?</span>
               </h2>
               <p className="cta-desc">
                 Solo trabajo con atletas que se toman el proceso en serio.
